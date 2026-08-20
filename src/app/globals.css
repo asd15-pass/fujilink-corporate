@@ -1,26 +1,116 @@
 @import "tailwindcss";
+@import "./town-animations.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ---- 面と文字 ---- */
+  --color-bg: #ffffff;
+  --color-surface: #f7f4ef;
+  --color-surface-hover: #f0ebe3;
+  --color-line: #e2ddd4;
+  --color-ink: #1c1917;
+  --color-ink-sub: #57534e;
+
+  /* ---- アクセント4色。すべてイラストから拾った色で統一する。
+         無印  = 大きな数字・アイコン用（白地で 3:1 以上）
+         -ink  = 小さい文字用（-soft の上で 4.5:1 以上）
+         -soft = チップやタグの地色
+         新しい色を足すときは必ず3点セットで足すこと。 ---- */
+  --color-accent: #c4522a;
+  --color-accent-ink: #a2411f;
+  --color-accent-soft: #fae7de;
+
+  --color-purple: #6f5fd0;
+  --color-purple-ink: #4a3ca6;
+  --color-purple-soft: #e9e6fb;
+
+  --color-teal: #279a91;
+  --color-teal-ink: #10645d;
+  --color-teal-soft: #d6f0ec;
+
+  --color-yellow: #b07a08;
+  --color-yellow-ink: #8a6008;
+  --color-yellow-soft: #fbeecd;
+
+  /* 採用バナーの帯だけは指示書指定の色 */
+  --color-accent-band: #f0d5c8;
+
+  --font-sans: var(--font-noto-sans-jp), "Hiragino Sans", sans-serif;
+  --font-display: var(--font-montserrat), var(--font-noto-sans-jp), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* ---- タイポスケール。最小 12px。 ---- */
+  --text-caption: 12px;
+  --text-caption--line-height: 1.7;
+  --text-small: 14px;
+  --text-small--line-height: 1.9;
+  --text-body: 15px;
+  --text-body--line-height: 1.95;
+  --text-lead: 16px;
+  --text-lead--line-height: 1.95;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+@utility numeric {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility note {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

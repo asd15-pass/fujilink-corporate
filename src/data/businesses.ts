@@ -1,0 +1,81 @@
+import type { BusinessCategory } from "@/types/business";
+
+// TODO: 事業カテゴリの正式名称・説明文は未提供。isProvisional の説明文は差し替え前提。
+export const businesses: BusinessCategory[] = [
+  {
+    id: "interior-exterior",
+    slug: "interior-exterior",
+    name: "内外装工事",
+    nameEn: "Interior / Exterior",
+    summary:
+      "店舗・オフィス・商業施設の内装から外装まで。解体から仕上げまでを一貫して管理します。",
+    services: ["店舗内装", "オフィス内装", "外装リニューアル", "原状回復"],
+    color: "purple",
+    displayOrder: 1,
+    featuredOnTop: true,
+    isProvisional: true,
+  },
+  {
+    id: "signage",
+    slug: "signage",
+    name: "看板・サイン",
+    nameEn: "Sign",
+    summary:
+      "ファサードサインから館内誘導サインまで、設計・製作・取付・保守までを担当します。",
+    services: ["ファサードサイン", "袖看板・自立看板", "誘導サイン", "点検・修繕"],
+    color: "accent",
+    displayOrder: 2,
+    featuredOnTop: true,
+    isProvisional: true,
+  },
+  {
+    id: "display",
+    slug: "display",
+    name: "店舗ディスプレイ",
+    nameEn: "Display",
+    summary:
+      "什器・VMD・季節装飾など、売場の見え方をつくる制作と施工に対応します。",
+    services: ["什器製作", "VMD施工", "季節装飾", "什器メンテナンス"],
+    color: "yellow",
+    displayOrder: 3,
+    featuredOnTop: true,
+    isProvisional: true,
+  },
+  {
+    id: "digital-signage",
+    slug: "digital-signage",
+    name: "デジタルサイネージ",
+    nameEn: "Digital Signage",
+    summary:
+      "ディスプレイの選定・設置から配信環境の構築、運用サポートまで対応します。",
+    services: ["機器選定", "設置工事", "配信環境構築", "運用サポート"],
+    color: "teal",
+    displayOrder: 4,
+    featuredOnTop: true,
+    isProvisional: true,
+  },
+  {
+    id: "event",
+    slug: "event",
+    name: "イベント企画・提案",
+    nameEn: "Event",
+    summary: "催事・フェア・ポップアップの企画から会場設営までを支援します。",
+    services: ["企画立案", "会場設営", "装飾製作", "撤去"],
+    color: "purple",
+    displayOrder: 5,
+    featuredOnTop: false,
+    isProvisional: true,
+  },
+  {
+    id: "maintenance",
+    slug: "maintenance",
+    name: "施工・修繕",
+    nameEn: "Maintenance",
+    summary: "小規模な修繕から定期的な点検対応まで、施工後も継続して関わります。",
+    services: ["定期点検", "部分修繕", "緊急対応", "更新工事"],
+    color: "teal",
+    displayOrder: 6,
+    featuredOnTop: false,
+    isProvisional: true,
+  },
+];

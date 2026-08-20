@@ -1,0 +1,23 @@
+export type Work = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  industry?: string;
+  area?: string;
+  clientName?: string;
+  location?: string;
+  duration?: string;
+  constructionType?: string;
+  size?: string;
+  mainImage?: string;
+  images: string[];
+  beforeImages?: string[];
+  afterImages?: string[];
+  points?: string[];
+  featured?: boolean;
+  displayOrder?: number;
+  publishedAt?: string;
+  isPlaceholder: boolean;
+};

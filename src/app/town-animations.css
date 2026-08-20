@@ -1,0 +1,701 @@
+.mv {
+  will-change: transform, opacity;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(0.4deg);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.035);
+  }
+}
+@keyframes treeSway {
+  0%,
+  100% {
+    transform: rotate(-0.5deg);
+  }
+  50% {
+    transform: rotate(0.5deg);
+  }
+}
+
+/* base 画像の矩形を切り出して重ねるパッチ方式は、矩形の中の背景ごと動いてしまう。
+   人物は下の base に静止したまま置き、動くのは透過スプライトの歩行者だけにする。
+   ここに残すのは、矩形の大半を対象物が占めていて背景のズレが出ない3点のみ。 */
+/* 足場の工事表現。溶接の閃光と火花、舞い上がる粉じん。 */
+@keyframes weldFlash {
+  0%,
+  46%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  54% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+  58% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
+  62% {
+    opacity: 0.1;
+    transform: scale(0.8);
+  }
+  66% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  72% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+@keyframes spark1 {
+  0%,
+  48%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  52% {
+    opacity: 1;
+    transform: translate(-3px, 2px);
+  }
+  70% {
+    opacity: 0;
+    transform: translate(-9px, 9px);
+  }
+}
+@keyframes spark2 {
+  0%,
+  56%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-2px, 3px);
+  }
+  78% {
+    opacity: 0;
+    transform: translate(-6px, 12px);
+  }
+}
+@keyframes spark3 {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  54% {
+    opacity: 1;
+    transform: translate(3px, 2px);
+  }
+  74% {
+    opacity: 0;
+    transform: translate(8px, 10px);
+  }
+}
+@keyframes dustRise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.7);
+  }
+  25% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, -34px) scale(1.5);
+  }
+}
+@keyframes shopGlow {
+  0%,
+  100% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes scanLine {
+  0% {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(48px);
+    opacity: 0;
+  }
+}
+@keyframes vanIdle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.3px);
+  }
+}
+@keyframes craneLift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes walkBob {
+  0%,
+  100% {
+    transform: rotate(2.5deg) translateY(0);
+  }
+  25% {
+    transform: rotate(0deg) translateY(-1.4px);
+  }
+  50% {
+    transform: rotate(-2.5deg) translateY(0);
+  }
+  75% {
+    transform: rotate(0deg) translateY(-1.4px);
+  }
+}
+@keyframes carBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.9px);
+  }
+}
+@keyframes wingFlap {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.45);
+  }
+}
+@keyframes winGlow {
+  0%,
+  38%,
+  100% {
+    opacity: 0;
+  }
+  48%,
+  86% {
+    opacity: 0.85;
+  }
+}
+@keyframes beacon {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+@keyframes signageCycle {
+  0%,
+  28%,
+  100% {
+    fill: #6f5fd0;
+    opacity: 0.38;
+  }
+  33%,
+  61% {
+    fill: #2fa39a;
+    opacity: 0.42;
+  }
+  66%,
+  94% {
+    fill: #e07a3e;
+    opacity: 0.42;
+  }
+}
+@keyframes walkA {
+  0% {
+    transform: translate(355px, 491px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(342px, 492px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(255px, 496px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(242px, 497px);
+    opacity: 0;
+  }
+}
+@keyframes walkB {
+  0% {
+    transform: translate(244px, 489px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(254px, 489px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(330px, 486px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(340px, 486px);
+    opacity: 0;
+  }
+}
+@keyframes walkC {
+  0% {
+    transform: translate(860px, 650px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(845px, 651px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(640px, 655px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(625px, 656px);
+    opacity: 0;
+  }
+}
+@keyframes walkD {
+  0% {
+    transform: translate(300px, 584px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(310px, 584px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(382px, 584px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(392px, 584px);
+    opacity: 0;
+  }
+}
+@keyframes walkE {
+  0% {
+    transform: translate(540px, 588px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(553px, 587px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(687px, 583px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(700px, 582px);
+    opacity: 0;
+  }
+}
+@keyframes walkF {
+  0% {
+    transform: translate(248px, 506px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(260px, 505px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(338px, 503px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(350px, 502px);
+    opacity: 0;
+  }
+}
+@keyframes walkG {
+  0% {
+    transform: translate(946px, 604px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(932px, 606px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(806px, 616px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(792px, 617px);
+    opacity: 0;
+  }
+}
+@keyframes signShine {
+  0% {
+    transform: translateX(-90px) skewX(-18deg);
+    opacity: 0;
+  }
+  12%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(330px) skewX(-18deg);
+    opacity: 0;
+  }
+}
+@keyframes walkH {
+  0% {
+    transform: translate(1156px, 552px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(1146px, 553px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(1050px, 564px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(1040px, 565px);
+    opacity: 0;
+  }
+}
+@keyframes walkI {
+  0% {
+    transform: translate(198px, 586px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(210px, 587px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(292px, 590px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(304px, 591px);
+    opacity: 0;
+  }
+}
+@keyframes walkJ {
+  0% {
+    transform: translate(596px, 662px);
+    opacity: 0;
+  }
+  8% {
+    transform: translate(614px, 661px);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(802px, 653px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(820px, 652px);
+    opacity: 0;
+  }
+}
+@keyframes cloudGoA {
+  0% {
+    transform: translate(80px, 175px);
+    opacity: 0;
+  }
+  6% {
+    transform: translate(150px, 177px);
+    opacity: 0.9;
+  }
+  92% {
+    transform: translate(1220px, 200px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(1300px, 202px);
+    opacity: 0;
+  }
+}
+@keyframes cloudGoB {
+  0% {
+    transform: translate(60px, 248px) scale(0.7);
+    opacity: 0;
+  }
+  6% {
+    transform: translate(140px, 247px) scale(0.7);
+    opacity: 0.6;
+  }
+  92% {
+    transform: translate(1240px, 235px) scale(0.7);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(1320px, 233px) scale(0.7);
+    opacity: 0;
+  }
+}
+@keyframes cloudGoC {
+  0% {
+    transform: translate(60px, 118px) scale(0.75);
+    opacity: 0;
+  }
+  7% {
+    transform: translate(150px, 120px) scale(0.75);
+    opacity: 0.5;
+  }
+  92% {
+    transform: translate(1230px, 112px) scale(0.75);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(1310px, 110px) scale(0.75);
+    opacity: 0;
+  }
+}
+@keyframes carDrive {
+  0% {
+    transform: translate(872px, 624px) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    transform: translate(845px, 630px) rotate(7deg);
+    opacity: 1;
+  }
+  28% {
+    transform: translate(765px, 650px) rotate(5deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(665px, 661px) rotate(0deg);
+    opacity: 1;
+  }
+  68% {
+    transform: translate(555px, 655px) rotate(-4deg);
+    opacity: 1;
+  }
+  82% {
+    transform: translate(448px, 638px) rotate(-5deg);
+    opacity: 1;
+  }
+  86% {
+    transform: translate(416px, 619px) rotate(0deg);
+    opacity: 1;
+  }
+  96% {
+    transform: translate(416px, 619px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(416px, 619px) rotate(0deg);
+    opacity: 0;
+  }
+}
+@keyframes carDrive2 {
+  0% {
+    transform: translate(470px, 646px) scaleX(-1) rotate(0deg);
+    opacity: 0;
+  }
+  6% {
+    transform: translate(500px, 650px) scaleX(-1) rotate(-4deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(585px, 663px) scaleX(-1) rotate(-2deg);
+    opacity: 1;
+  }
+  55% {
+    transform: translate(680px, 666px) scaleX(-1) rotate(0deg);
+    opacity: 1;
+  }
+  78% {
+    transform: translate(790px, 651px) scaleX(-1) rotate(4deg);
+    opacity: 1;
+  }
+  92% {
+    transform: translate(850px, 634px) scaleX(-1) rotate(6deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(868px, 628px) scaleX(-1) rotate(6deg);
+    opacity: 0;
+  }
+}
+@keyframes carDrive3 {
+  0% {
+    transform: translate(872px, 618px) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    transform: translate(845px, 624px) rotate(7deg);
+    opacity: 1;
+  }
+  30% {
+    transform: translate(762px, 644px) rotate(5deg);
+    opacity: 1;
+  }
+  52% {
+    transform: translate(665px, 655px) rotate(0deg);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(555px, 649px) rotate(-4deg);
+    opacity: 1;
+  }
+  82% {
+    transform: translate(482px, 634px) rotate(-5deg);
+    opacity: 1;
+  }
+  88% {
+    transform: translate(464px, 638px) rotate(-3deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(464px, 638px) rotate(-3deg);
+    opacity: 0;
+  }
+}
+@keyframes rockA {
+  0%,
+  100% {
+    transform: translate(70px, 740px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(70px, 730px) rotate(2deg);
+  }
+}
+@keyframes rockB {
+  0%,
+  100% {
+    transform: translate(1186px, 646px) rotate(1.5deg);
+  }
+  50% {
+    transform: translate(1186px, 634px) rotate(-1.5deg);
+  }
+}
+@keyframes rockC {
+  0%,
+  100% {
+    transform: translate(1072px, 852px) rotate(0deg);
+  }
+  50% {
+    transform: translate(1072px, 844px) rotate(3deg);
+  }
+}
+@keyframes rockD {
+  0%,
+  100% {
+    transform: translate(690px, 866px) rotate(0deg);
+  }
+  50% {
+    transform: translate(690px, 859px) rotate(-4deg);
+  }
+}
+@keyframes birdFly1 {
+  0% {
+    transform: translate(-50px, 320px);
+    opacity: 0;
+  }
+  6% {
+    transform: translate(60px, 308px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(700px, 230px);
+    opacity: 0.9;
+  }
+  94% {
+    transform: translate(1400px, 290px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(1520px, 300px);
+    opacity: 0;
+  }
+}
+@keyframes birdFly2 {
+  0% {
+    transform: translate(1520px, 200px) scaleX(-1);
+    opacity: 0;
+  }
+  6% {
+    transform: translate(1400px, 208px) scaleX(-1);
+    opacity: 0.8;
+  }
+  55% {
+    transform: translate(650px, 150px) scaleX(-1);
+    opacity: 0.8;
+  }
+  94% {
+    transform: translate(-20px, 190px) scaleX(-1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-60px, 195px) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .town-scene,
+  .town-scene * {
+    animation: none !important;
+  }
+
+  .town-scene .town-transient {
+    display: none;
+  }
+
+  .town-scene [data-rock="a"] {
+    transform: translate(70px, 735px);
+    opacity: 1;
+  }
+  .town-scene [data-rock="b"] {
+    transform: translate(1186px, 640px);
+    opacity: 1;
+  }
+  .town-scene [data-rock="c"] {
+    transform: translate(1072px, 848px);
+    opacity: 1;
+  }
+  .town-scene [data-rock="d"] {
+    transform: translate(690px, 862px);
+    opacity: 1;
+  }
+}
