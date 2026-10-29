@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import { Container, PageHero, Placeholder, SectionHeading } from "@/components/ui";
+import { COMPANY } from "@/lib/site";
 
 export const metadata: Metadata = { title: "会社概要" };
 
 const PROFILE = [
   ["会社名", "株式会社FUJI LINK"],
-  ["所在地", "［住所が入ります］"],
-  ["設立", "［年月が入ります］"],
-  ["代表者", "藤田 ［フルネーム］"],
-  ["資本金", "［金額が入ります］"],
-  ["事業内容", "内外装工事／看板・サイン／店舗ディスプレイ／設計／イベント企画・提案／施工・修繕／デジタルサイネージ"],
+  ["所在地", `${COMPANY.zip} ${COMPANY.address}`],
+  ["設立", "2022年10月"],
+  ["代表者", "藤田 稜"],
+  ["資本金", "300万円"],
+  ["事業内容", "内外装工事／看板・サイン／店舗ディスプレイ／設計／イベント企画・提案／施工・修繕"],
   ["許認可・登録", "［建設業許可番号など。要確認］"],
-  ["電話番号", "000-000-0000"],
+  ["電話番号", COMPANY.tel],
 ];
 
 export default function CompanyPage() {
@@ -27,7 +28,7 @@ export default function CompanyPage() {
             <p className="text-[15px] leading-loose text-sub">代表メッセージが入ります。草加・埼玉への想いなど。</p>
             <p className="flex flex-col gap-0.5 self-end text-right">
               <span className="text-[13px] text-sub">株式会社FUJI LINK 代表取締役</span>
-              <span className="text-lg font-bold">藤田 ［フルネーム］</span>
+              <span className="text-lg font-bold">藤田 稜</span>
             </p>
           </div>
         </div>
@@ -47,11 +48,18 @@ export default function CompanyPage() {
       </div>
       <Container className="flex flex-col gap-7 py-[clamp(56px,7vw,96px)]">
         <SectionHeading en="ACCESS" small>アクセス</SectionHeading>
-        <Placeholder label="［Googleマップ埋め込み］" className="aspect-[4/3] rounded-[20px] md:aspect-[16/6]" />
-        <p className="flex flex-col gap-1 text-sm leading-[1.8] text-sub">
-          <span>［住所が入ります］</span>
-          <span>［最寄り駅からのアクセスが入ります］</span>
-        </p>
+        <iframe
+          title={`${COMPANY.name}の地図`}
+          src={`https://www.google.com/maps?q=${encodeURIComponent(COMPANY.address)}&output=embed`}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="aspect-[4/3] w-full rounded-[20px] border-0 md:aspect-[16/6]"
+        />
+        <div className="flex flex-col gap-1 text-sm leading-[1.8] text-sub">
+          <p>{COMPANY.zip} {COMPANY.address}</p>
+          <p className="mt-2 font-bold text-ink">【電車・バスでお越しの場合】</p>
+          <p>東武スカイツリーライン「新田（しんでん）」駅 東口よりバスで約5分、「草加高校入口」バス停下車 徒歩4分。</p>
+        </div>
       </Container>
     </>
   );

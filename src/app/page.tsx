@@ -13,9 +13,9 @@ export default function Home() {
 
   return (
     <>
-      {/* Spec §7: PC 1440 → 1600px art at top -124 in a 900px frame; SP 390 → 782px at top 11 in 560px. Scaled by viewport width. */}
-      <section className="relative h-[143.6vw] overflow-hidden bg-cream md:h-[62.5vw]">
-        <HeroIllustration className="absolute left-1/2 top-[2.82vw] w-[200.5vw] -translate-x-1/2 md:top-[-8.61vw] md:w-[111.11vw]" />
+      {/* Spec §6: PC 1440 → 1670px art, left -115 / top -124 in a 900px frame; SP 390 → 782px at top 11 in 560px. Scaled by viewport width. */}
+      <section className="relative h-[143.6vw] overflow-hidden bg-[#f6eedd] md:h-[62.5vw]">
+        <HeroIllustration className="absolute left-1/2 top-[2.82vw] w-[200.5vw] -translate-x-1/2 md:top-[-8.61vw] md:w-[115.97vw]" />
         <div className="absolute inset-x-6 top-5 z-10 hidden h-16 items-center justify-between rounded-full bg-white/95 px-7 shadow-[0_4px_20px_rgba(0,0,0,.08)] md:flex">
           <Logo />
           <NavLinks className="!gap-[26px]" />

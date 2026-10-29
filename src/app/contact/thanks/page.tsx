@@ -7,10 +7,10 @@ export const metadata: Metadata = { title: "送信完了", robots: { index: fals
 export default function ThanksPage() {
   return (
     <>
-      <PageHero en="CONTACT" title="送信完了" crumbs={[{ label: "お問い合わせ", href: "/contact" }]} />
+      <PageHero en="CONTACT" title="送信完了" />
       <section className="mx-auto flex max-w-[760px] flex-col items-center gap-[22px] px-5 py-[clamp(56px,7vw,104px)] text-center">
         <div className="grid size-[84px] place-items-center rounded-full bg-cream">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#1b3d5f" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#2b2f3a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M11 23l7 7 15-16" />
           </svg>
         </div>

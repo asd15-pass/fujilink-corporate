@@ -6,15 +6,16 @@ export type Service = {
   color: string;
   tint: string;
   items: string[];
+  desc: string;
 };
 
 export const SERVICES: Service[] = [
-  { slug: "interior", tag: "内装", name: "内外装工事", en: "INTERIOR", color: "#e8c21a", tint: "#fbf3d0", items: ["店舗内装", "外装改修", "オフィス"] },
-  { slug: "sign", tag: "サイン", name: "看板・サイン", en: "SIGN", color: "#ec8aa3", tint: "#fce6ec", items: ["屋外看板", "LEDサイン", "館内サイン"] },
-  { slug: "display", tag: "ディスプレイ", name: "店舗ディスプレイ", en: "DISPLAY", color: "#f0a46a", tint: "#fdeadb", items: ["什器", "VMD", "ウィンドウ"] },
-  { slug: "design", tag: "設計", name: "設計", en: "DESIGN", color: "#6cb4e4", tint: "#e2f0fa", items: ["店舗設計", "図面作成", "各種申請"] },
-  { slug: "event", tag: "イベント", name: "イベント企画・提案", en: "EVENT", color: "#e8503f", tint: "#fbe2de", items: ["企画", "ブース施工", "運営"] },
-  { slug: "construction", name: "施工・修繕", en: "CONSTRUCTION", color: "#0aa39a", tint: "#d9f1ef", items: ["修繕", "メンテナンス", "撤去"] },
+  { slug: "interior", tag: "内装", name: "内外装工事", en: "INTERIOR", color: "#48b14b", tint: "#e3f3e2", items: ["店舗内装", "外装改修", "オフィス"], desc: "店舗・オフィス・商業施設の内装から外装改修まで、空間づくりをまるごとお任せいただけます。アミューズメント施設など、にぎやかで大規模な空間の施工経験が豊富です。新装・改装・原状回復まで、規模を問わずご相談ください。" },
+  { slug: "sign", tag: "サイン", name: "看板・サイン", en: "SIGN", color: "#ec8aa3", tint: "#fce6ec", items: ["屋外看板", "LEDサイン", "館内サイン"], desc: "屋外看板・LEDサイン・館内サインまで、デザインから製作・取り付け工事まで一貫して対応します。お店の「顔」として目を引き、集客につながるサインをおつくりします。" },
+  { slug: "display", tag: "ディスプレイ", name: "店舗ディスプレイ", en: "DISPLAY", color: "#f0a46a", tint: "#fdeadb", items: ["什器", "VMD", "ウィンドウ"], desc: "売場の什器やウィンドウディスプレイ、季節装飾など、商品が映える売場づくりをお手伝いします。「見やすく、手に取りやすく、買いたくなる」売場をつくります。" },
+  { slug: "design", tag: "設計", name: "設計", en: "DESIGN", color: "#6cb4e4", tint: "#e2f0fa", items: ["店舗設計", "図面作成", "各種申請"], desc: "店舗の設計・図面作成から、出店に必要な各種申請まで対応します。「こんなお店にしたい」というイメージ段階からでも、図面に起こしてかたちにしていきます。" },
+  { slug: "event", tag: "イベント", name: "イベント企画・提案", en: "EVENT", color: "#e8503f", tint: "#fbe2de", items: ["企画", "ブース施工", "運営"], desc: "展示会ブースや店頭イベントの企画から、設営・運営までトータルでサポートします。目的とご予算に合わせた、人が集まる企画をご提案します。" },
+  { slug: "construction", name: "施工・修繕", en: "CONSTRUCTION", color: "#0aa39a", tint: "#d9f1ef", items: ["修繕", "メンテナンス", "撤去"], desc: "施工後の修繕・メンテナンスから、閉店時の撤去・原状回復まで対応します。「作って終わり」ではなく、お店の営業を長く支えるパートナーであり続けます。" },
 ];
 
 export const TOP_SERVICES = ["interior", "sign", "display", "design"];
@@ -63,13 +64,21 @@ export const REASONS = [
   {
     title: "「できない」と言わない",
     sub: "完全オーダーメイドでお応えします。",
-    color: "#e8c21a",
-    tint: "#fff6cc",
+    color: "#48b14b",
+    tint: "#e3f3e2",
     body: "既製品では合わない形や素材、短納期のご相談も、まずはお聞かせください。製作方法や代替案まで含めて検討し、ご要望を形にする方法を一緒に探します。",
   },
 ];
 
 export const LOGO_COLORS = ["#ec7c92", "#f08a4b", "#f8cc03", "#48b14b", "#01a19a", "#00b8ee", "#9a72af", "#e7373e"];
+
+export const COMPANY = {
+  name: "株式会社FUJI LINK",
+  zip: "〒340-0006",
+  address: "埼玉県草加市八幡町1168-13",
+  tel: "048-633-9656",
+  hours: "9:00〜18:00",
+};
 
 export const SITE_URL = "https://fujilink.co.jp";
 

@@ -8,12 +8,17 @@ export const metadata: Metadata = { title: "施工実績" };
 const PER_PAGE = 12;
 
 type Query = { ind: string[]; tag: string[] };
-type Group = { key: keyof Query; label: string; tags: string[] };
+type Group = { key: keyof Query; label: string; note: string; badge: string; tags: string[] };
 
 const GROUPS: Group[] = [
-  { key: "ind", label: "業種", tags: INDUSTRIES },
-  { key: "tag", label: "タグ", tags: WORK_TAGS },
+  { key: "ind", label: "業種", note: "お店・施設の種類", badge: "#f08a4b", tags: INDUSTRIES },
+  { key: "tag", label: "タグ", note: "施工内容", badge: "#00b8ee", tags: WORK_TAGS },
 ];
+
+const chipCls = {
+  ind: (on: boolean) => `rounded-lg px-4 py-[7px] ${on ? "border-[#f08a4b] bg-[#f08a4b] text-white hover:text-white" : "border-[#f6c9a5] bg-[#fdeadb] text-[#7a3f12]"}`,
+  tag: (on: boolean) => `rounded-full px-3 py-[7px] ${on ? "border-[#00b8ee] bg-[#00b8ee] text-white hover:text-white" : "border-line-2 bg-white text-ink"}`,
+};
 
 const list = (v: string | string[] | undefined) => (v == null ? [] : Array.isArray(v) ? v : v.split(",")).filter(Boolean);
 
@@ -47,10 +52,13 @@ export default async function WorksPage({ searchParams }: PageProps<"/works">) {
     <>
       <PageHero en="WORKS" title="施工実績" lead="リード文が入ります。" />
       <Container className="flex flex-col gap-8 pb-[clamp(64px,8vw,104px)] pt-[clamp(40px,5vw,72px)]">
-        <div className="flex flex-col gap-4 rounded-[20px] border-2 border-line bg-white p-[clamp(18px,2.4vw,28px)]">
-          {GROUPS.map(g => (
-            <div key={g.key} className="flex flex-col gap-x-4 gap-y-2.5 md:flex-row md:items-start">
-              <p className="w-[72px] shrink-0 pt-[7px] text-[13px] font-bold text-label">{g.label}</p>
+        <div className="flex flex-col rounded-[20px] border-2 border-line bg-white p-[clamp(18px,2.4vw,28px)]">
+          {GROUPS.map((g, gi) => (
+            <div key={g.key} className={`flex flex-col gap-x-4 gap-y-2.5 md:flex-row md:items-start ${gi ? "border-t border-dashed border-line-2 pt-4" : "pb-4"}`}>
+              <div className="flex w-[76px] shrink-0 flex-row items-center gap-2 md:flex-col md:items-start md:gap-1 md:pt-1">
+                <span className="rounded px-2 py-0.5 text-xs font-bold text-white" style={{ background: g.badge }}>{g.label}</span>
+                <span className="text-[11px] leading-snug text-label">{g.note}</span>
+              </div>
               <div className="flex flex-1 flex-wrap gap-2">
                 {g.tags.map(t => {
                   const on = q[g.key].includes(t);
@@ -60,18 +68,20 @@ export default async function WorksPage({ searchParams }: PageProps<"/works">) {
                       href={href(toggle(g.key, t))}
                       scroll={false}
                       aria-pressed={on}
-                      className={`flex items-center gap-1.5 rounded-full border-[1.5px] px-3.5 py-[7px] text-[13px] font-bold ${on ? "border-navy bg-navy text-white hover:text-white" : "border-input bg-white text-ink"}`}
+                      className={`border-[1.5px] text-[13px] font-bold ${chipCls[g.key](on)}`}
                     >
-                      {t}
+                      {g.key === "tag" && "# "}{t}
                     </Link>
                   );
                 })}
               </div>
             </div>
           ))}
-          <div className="flex flex-wrap items-center justify-between gap-2.5 border-t border-line pt-3.5 text-[13px] text-sub">
-            <span><b className="text-[15px] text-navy">全{filtered.length}件</b>　新着順</span>
-            <Link href="/works" scroll={false} className="border-b border-num font-bold text-sub">条件をクリア</Link>
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-2.5 border-t border-line pt-4 text-[13px] text-sub">
+            <span>
+              全{WORKS.length}件中 <b className="text-[15px] text-navy">{filtered.length}件（{filtered.length ? `${(cur - 1) * PER_PAGE + 1}〜${(cur - 1) * PER_PAGE + shown.length}` : 0}件目）</b> を表示（新着順）
+            </span>
+            <Link href="/works" scroll={false} className="border-b border-sub font-bold text-sub">条件をクリア</Link>
           </div>
         </div>
 
@@ -82,7 +92,7 @@ export default async function WorksPage({ searchParams }: PageProps<"/works">) {
               <div className="flex flex-col gap-2 p-3 pb-3.5 md:px-5 md:pb-[22px] md:pt-[18px]">
                 <p className="font-en text-xs font-semibold text-label">{w.date}</p>
                 <p className="text-sm font-bold leading-normal md:text-[17px]">{w.title}</p>
-                <p className="text-xs font-bold text-sub">{w.industry}</p>
+                <span className="self-start rounded-md border border-[#f6c9a5] bg-[#fdeadb] px-2 py-0.5 text-[11px] font-bold text-[#7a3f12]">{w.industry}</span>
               </div>
             </Link>
           ))}
