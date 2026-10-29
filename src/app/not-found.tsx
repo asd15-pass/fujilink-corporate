@@ -1,11 +1,12 @@
-import PagePlaceholder from "@/components/layout/PagePlaceholder";
+import { MoreLink, PageHero } from "@/components/ui";
 
 export default function NotFound() {
   return (
-    <PagePlaceholder
-      eyebrow="404"
-      heading="ページが見つかりません"
-      note="URLが変更されたか、削除された可能性があります。"
-    />
+    <>
+      <PageHero title="ページが見つかりません" lead="URLが変更されたか、削除された可能性があります。" />
+      <div className="flex justify-center py-[clamp(48px,6vw,96px)]">
+        <MoreLink href="/">トップへ戻る →</MoreLink>
+      </div>
+    </>
   );
 }
