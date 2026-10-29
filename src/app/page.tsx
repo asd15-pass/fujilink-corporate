@@ -91,7 +91,7 @@ export default function Home() {
           ))}
         </div>
         <MoreLink href="/reason">くわしく見る →</MoreLink>
-        <Link href="#" className="mt-6 flex flex-col overflow-hidden rounded-3xl border-2 border-navy bg-white text-navy hover:text-navy">
+        <Link href="/recruit" className="mt-6 flex flex-col overflow-hidden rounded-3xl border-2 border-navy bg-white text-navy hover:text-navy">
           <div className="rainbow-line h-2.5" />
           <div className="flex flex-wrap items-center justify-between gap-5 px-[clamp(24px,4vw,56px)] py-[clamp(28px,4vw,44px)]">
             <p className="text-[clamp(20px,2.4vw,28px)] font-black">一緒に街をつくる仲間を募集しています</p>

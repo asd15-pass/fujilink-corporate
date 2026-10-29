@@ -71,12 +71,14 @@ export const REASONS = [
 
 export const LOGO_COLORS = ["#ec7c92", "#f08a4b", "#f8cc03", "#48b14b", "#01a19a", "#00b8ee", "#9a72af", "#e7373e"];
 
+export const SITE_URL = "https://fujilink.co.jp";
+
 export const NAV = [
   { label: "事業案内", href: "/service" },
   { label: "施工実績", href: "/works" },
   { label: "選ばれる理由", href: "/reason" },
   { label: "会社概要", href: "/company" },
-  { label: "採用情報", href: "#" },
+  { label: "採用情報", href: "/recruit" },
 ];
 
 export const FOOTER_NAV = [...NAV, { label: "お問い合わせ", href: "/contact" }, { label: "プライバシーポリシー", href: "/privacy" }];

@@ -8,7 +8,7 @@ export function CtaBand() {
         <Link href="/contact" className="whitespace-nowrap rounded-full bg-accent px-[clamp(20px,2.5vw,36px)] py-[15px] font-bold text-white hover:text-white hover:opacity-90">
           お問い合わせ
         </Link>
-        <Link href="#" className="whitespace-nowrap rounded-full bg-yellow px-[clamp(20px,2.5vw,36px)] py-[15px] font-bold text-navy hover:text-navy hover:opacity-90">
+        <Link href="/recruit" className="whitespace-nowrap rounded-full bg-yellow px-[clamp(20px,2.5vw,36px)] py-[15px] font-bold text-navy hover:text-navy hover:opacity-90">
           採用エントリー
         </Link>
       </div>
