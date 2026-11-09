@@ -1,0 +1,56 @@
+{
+ "6ae74d311aac": {
+  "src": "/hero/baked/6ae74d311aac-e556d862.webp",
+  "box": [
+   0,
+   0,
+   1600,
+   640.5
+  ]
+ },
+ "524f5b4f4106": {
+  "src": "/hero/baked/524f5b4f4106-f6c343ac.webp",
+  "box": [
+   116,
+   245.5,
+   1368,
+   790
+  ]
+ },
+ "2a5191ee4fc4": {
+  "src": "/hero/baked/2a5191ee4fc4-2857ff2e.webp",
+  "box": [
+   758,
+   223.5,
+   634.5,
+   405.5
+  ]
+ },
+ "2f2c786b3d80": {
+  "src": "/hero/baked/2f2c786b3d80-e1479a3b.webp",
+  "box": [
+   273.5,
+   145.5,
+   1068.5,
+   758
+  ]
+ },
+ "bc1bd90e8981": {
+  "src": "/hero/baked/bc1bd90e8981-43e0a4bf.webp",
+  "box": [
+   336.5,
+   601.5,
+   997,
+   326
+  ]
+ },
+ "ac746cd6ad88": {
+  "src": "/hero/baked/ac746cd6ad88-cc10d79c.webp",
+  "box": [
+   544,
+   528.5,
+   511.5,
+   222.5
+  ]
+ }
+}

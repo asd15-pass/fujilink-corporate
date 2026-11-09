@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { Montserrat, Zen_Maru_Gothic } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import { Header } from "@/components/Header";
 import { CtaBand } from "@/components/CtaBand";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
-const zen = Zen_Maru_Gothic({
+// Zen Maru Gothic cut to the characters the site uses (scripts/subset-fonts.mjs): one file per weight, so the
+// page is laid out once when the font arrives rather than once per Google Fonts slice.
+const zen = localFont({
   variable: "--font-zen",
-  weight: ["400", "500", "700", "900"],
-  subsets: ["latin"],
-  preload: false,
+  src: [
+    { path: "./fonts/zen-maru-400.woff2", weight: "400" },
+    { path: "./fonts/zen-maru-500.woff2", weight: "500" },
+    { path: "./fonts/zen-maru-700.woff2", weight: "700" },
+    { path: "./fonts/zen-maru-900.woff2", weight: "900" },
+  ],
+  display: "swap",
 });
 
 const montserrat = Montserrat({

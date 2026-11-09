@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { outlineZenText } from "./lib/outline-text.mjs";
 
 const [src, outDir] = process.argv.slice(2);
 const html = fs.readFileSync(src, "utf8");
@@ -16,8 +17,16 @@ const assets = s => s.replaceAll("assets/", "/hero/");
 // CSS: prefix every top-level selector with .fl-hero, drop page-level rules
 const css = between(html, "<style>", "</style>");
 let out = "", i = 0;
-const scope = sel => sel.split(",").map(x => x.trim()).map(x => (x === "body" || x === "a" || x === "a:hover") ? null : `.fl-hero ${x}`).filter(Boolean).join(",");
+// .calm (colour grade) and .cr-paper .lyr (drop shadow) are baked into the markup by render.ts: as CSS filters they re-filter the whole scene on every animation frame.
+const BAKED = new Set([".calm", ".cr-paper .lyr"]);
+const scope = sel => sel.split(",").map(x => x.trim()).map(x => (x === "body" || x === "a" || x === "a:hover" || BAKED.has(x)) ? null : `.fl-hero ${x}`).filter(Boolean).join(",");
 const block = (s, start) => { let d = 0; for (let k = start; k < s.length; k++) { if (s[k] === "{") d++; else if (s[k] === "}") { d--; if (!d) return k; } } return s.length; };
+// Elements cloned by <use> live in their own tree, where `.fl-hero x` can never match. Rules for classes used
+// inside symbols are also emitted unscoped, as the design writes them. They pause through the inherited
+// --fl-play (see globals.css) and are left out entirely when motion is reduced.
+const symClasses = new Set([...between(html, "<defs>", "</defs>").matchAll(/class="([^"]+)"/g)].flatMap(m => m[1].split(/\s+/)));
+const inSymbols = sel => [...sel.matchAll(/\.([\w-]+)/g)].some(m => symClasses.has(m[1]));
+let bare = "";
 while (i < css.length) {
   const ob = css.indexOf("{", i);
   if (ob < 0) break;
@@ -31,10 +40,15 @@ while (i < css.length) {
   } else {
     const sc = scope(head);
     if (sc) out += `${sc}{${body}}\n`;
+    if (sc && inSymbols(head)) bare += `${head}{${body}${/animation/.test(body) ? ";animation-play-state:var(--fl-play,running)" : ""}}\n`;
   }
   i = end + 1;
 }
+if (bare) out += `@media (prefers-reduced-motion:no-preference){\n${bare}}\n`;
 fs.writeFileSync(path.join(outDir, "hero.css"), out);
+const animated = new Set();
+for (const m of out.matchAll(/([^{}]+)\{[^{}]*animation(?:-name)?:\s*(?!none)[^;}]+/g))
+  for (const sel of m[1].split(",")) for (const c of sel.matchAll(/\.([\w-]+)/g)) if (c[1] !== "fl-hero") animated.add(c[1]);
 
 // DEFS
 let defs = between(html, "<defs>", "</defs>");
@@ -42,6 +56,9 @@ defs = defs.replace(/<sc-if value="\{\{ svcText \}\}"[^>]*>/g, "").replace(/<\/s
 defs = defs.replace(/<sc-for list="\{\{ clips \}\}"[\s\S]*?<\/sc-for>/, "");
 defs = defs.replace("{{ ccx }}", "745").replace("{{ ccy }}", "610").replace("{{ crx }}", "236").replace("{{ cry }}", "120");
 if (defs.includes("{{")) throw new Error("unresolved in defs: " + defs.slice(defs.indexOf("{{"), defs.indexOf("{{") + 40));
+// Sign lettering in Zen Maru Gothic becomes outlines, so the hero never waits for (or re-lays out on) the web font.
+const outlined = await outlineZenText(defs);
+defs = outlined.markup;
 
 const l380 = lines.find(l => l.startsWith('<sc-if value="{{ cImg }}"'));
 const center = assets(l380.slice(l380.indexOf(">") + 1)).replaceAll("{{ calmCls }}", "calm");
@@ -63,17 +80,20 @@ export const HERO_LETTERS_OFF = ${JSON.stringify(dark)};
 export const HERO_TRACE = ${JSON.stringify(trace)};
 export const HERO_TRACE_RB = ${JSON.stringify(traceRb)};
 export const HERO_WHALE = ${JSON.stringify(whale)};
+export const HERO_ANIMATED_CLASSES = ${JSON.stringify([...animated].sort())};
 `;
 fs.writeFileSync(path.join(outDir, "static.ts"), ts);
 
 // geo(): copy method body verbatim, run against a plain { props, state } object
 const geoStart = html.indexOf("  geo() {");
 const rvStart = html.indexOf("  renderVals() {");
-const geoSrc = html.slice(geoStart, rvStart).trim().replace(/^geo\(\) \{/, "").replace(/\}\s*$/, "");
+const geoSrc = html.slice(geoStart, rvStart).trim().replace(/^geo\(\) \{/, "").replace(/\}\s*$/, "")
+  .replace("this._g = { rim,", "this._g = { mk, lt, dk, mix, merge, rim,");
+if (!geoSrc.includes("this._g = { mk,")) throw new Error("geo() return shape changed");
 fs.writeFileSync(path.join(outDir, "geo.js"), `/* eslint-disable */
 // Ported verbatim from the design handoff (FUJI LINK Hero.dc.html). Regenerate rather than hand-edit.
 export function buildGeo(props) {
   return function () {${geoSrc}}.call({ props, state: {} });
 }
 `);
-console.log("css", out.length, "defs", defs.length, "center", center.length, "trace", trace.length, "whale", whale.length, "geo", geoSrc.length);
+console.log("outlined text", outlined.count, "css", out.length, "defs", defs.length, "center", center.length, "trace", trace.length, "whale", whale.length, "geo", geoSrc.length);
