@@ -493,7 +493,7 @@ export function buildGeo(props) {
     const rim = []; { const RX = (this.props.plazaRx ?? 236) + 16, RY = (this.props.plazaRy ?? 120) + 10; const kinds = ['#hedgeC', '#fbed', '#lampP', '#hedgeC', '#tr', '#fbed', '#flag', '#hedgeC', '#sak', '#fbed'];
       for (let k = 0; k < 26; k++) { const a = (12 + k * (156 / 25)) * Math.PI / 180, x = 800 + RX * Math.cos(a), y = 652 + RY * Math.sin(a); const hh = kinds[k % kinds.length]; const s = hh === '#lampP' ? .85 : (hh === '#tr' || hh === '#sak') ? .62 : hh === '#flag' ? 1.1 : 1; rim.push({ h: hh, m: 'translate(' + r1(x) + ' ' + r1(y) + ') scale(' + s + ')', y }); if (k % 5 === 2) rim.push({ h: '#p' + (1 + k % 6), m: 'translate(' + r1(x + 8) + ' ' + r1(y - 13) + ') scale(' + PS + ')', y: y + .1 }); }
       rim.sort((p, q) => p.y - q.y); }
-        this._g = { rim, plinth: merge(plinth), S, sky, clips, taxi, isle, cent, outline, pins, NAMES, COLS, sign: S.sign, logo3d: S.logo3d, v5: S.v5 };
+        this._g = { mk, lt, dk, mix, merge, rim, plinth: merge(plinth), S, sky, clips, taxi, isle, cent, outline, pins, NAMES, COLS, sign: S.sign, logo3d: S.logo3d, v5: S.v5 };
     return this._g;
   }.call({ props, state: {} });
 }

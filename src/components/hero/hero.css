@@ -56,9 +56,7 @@
 @keyframes rib{from{transform:skewX(-8deg) scaleY(1)}to{transform:skewX(10deg) scaleY(.9)}}
 .fl-hero .spray{transform-box:fill-box;transform-origin:50% 100%;animation:spray 1.5s ease-in-out infinite alternate}
 @keyframes spray{from{transform:scaleY(.7)}to{transform:scaleY(1.15)}}
-.fl-hero .calm{filter:saturate(.74) brightness(1.02)}
 .fl-hero .cr-paper .lyr path{stroke:#fffdf6;stroke-width:.9px;stroke-linejoin:round;stroke-opacity:.85}
-.fl-hero .cr-paper .lyr{filter:drop-shadow(3px 3.5px 0 rgba(90,60,30,.2))}
 .fl-hero .cr-paper .isf path,.fl-hero .cr-paper .isf2 path{stroke:#fffaf0;stroke-width:.8px;stroke-linejoin:round}
 .fl-hero .cr-dio .lyr{filter:drop-shadow(0 3px 2.5px rgba(40,25,10,.26))}
 .fl-hero .cr-dio .gnd{filter:saturate(1.15)}
@@ -222,3 +220,76 @@
 .fl-hero .fwk{transform-box:fill-box;transform-origin:center;animation:fwk 3s ease-out infinite}
 @keyframes fwk{0%{transform:scale(.1);opacity:0}12%{opacity:1}55%{transform:scale(1.1);opacity:0}100%{transform:scale(1.1);opacity:0}}
 @media(prefers-reduced-motion:reduce){.fl-hero svg *{animation:none!important}}
+@media (prefers-reduced-motion:no-preference){
+.leg-a,.leg-b,.arm-a,.arm-b{transform-box:fill-box;transform-origin:50% 0}
+.leg-a{animation:stride 1s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.leg-b{animation:stride 1s ease-in-out infinite alternate-reverse;animation-play-state:var(--fl-play,running)}
+.arm-a{animation:swing 1s ease-in-out infinite alternate-reverse;animation-play-state:var(--fl-play,running)}
+.arm-b{animation:swing 1s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 4.6s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.sw2{animation-duration:3.7s;animation-delay:-1.3s;animation-play-state:var(--fl-play,running)}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 46s linear infinite;animation-play-state:var(--fl-play,running)}
+.spin8{transform-box:fill-box;transform-origin:center;animation:spin 9s linear infinite;animation-play-state:var(--fl-play,running)}
+.spin8r{transform-box:fill-box;transform-origin:center;animation:spin 6.3s linear infinite reverse;animation-play-state:var(--fl-play,running)}
+.spin6{transform-box:fill-box;transform-origin:center;animation:spin 4s linear infinite;animation-play-state:var(--fl-play,running)}
+.spin3{transform-box:fill-box;transform-origin:center;animation:spin 2.2s linear infinite;animation-play-state:var(--fl-play,running)}
+.spx{transform-box:fill-box;transform-origin:center;animation:spx 2.6s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.wob{transform-box:fill-box;transform-origin:50% 100%;animation:wob 3.4s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.flt{animation:flt 3.2s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.bob{animation:bob 2.8s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.bob2{animation-duration:3.5s;animation-delay:-1s;animation-play-state:var(--fl-play,running)}
+.hov{animation:hov 7s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.flame{transform-box:fill-box;transform-origin:50% 0;animation:flame .25s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.note{animation:note 3.4s ease-out infinite;animation-play-state:var(--fl-play,running)}
+.n2{animation-delay:-1.1s;animation-play-state:var(--fl-play,running)}
+.n3{animation-delay:-2.2s;animation-play-state:var(--fl-play,running)}
+.blink{animation:blink 1.6s steps(1) infinite;animation-play-state:var(--fl-play,running)}
+.b2{animation-delay:-.8s;animation-play-state:var(--fl-play,running)}
+.wav{transform-box:fill-box;transform-origin:0 50%;animation:wav 1.6s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.rib{transform-box:fill-box;transform-origin:50% 0;animation:rib 2.2s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.r2{animation-delay:-.5s;animation-play-state:var(--fl-play,running)}
+.r3{animation-delay:-1s;animation-play-state:var(--fl-play,running)}
+.r4{animation-delay:-1.5s;animation-play-state:var(--fl-play,running)}
+.spray{transform-box:fill-box;transform-origin:50% 100%;animation:spray 1.5s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.hue{animation:hue 9s linear infinite;animation-play-state:var(--fl-play,running)}
+.glow{animation:glow 3.4s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.smk{transform-box:fill-box;transform-origin:center;animation:smk 5s ease-out infinite;animation-play-state:var(--fl-play,running)}
+.s2{animation-delay:-1.7s;animation-play-state:var(--fl-play,running)}
+.s3{animation-delay:-3.4s;animation-play-state:var(--fl-play,running)}
+.swing{transform-box:fill-box;transform-origin:center;animation:swingl 2.6s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.sg2{animation-delay:-1.2s;animation-play-state:var(--fl-play,running)}
+.koiswim{animation:koiswim 14s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.ktail{transform-box:fill-box;transform-origin:center;animation:ktail 1.9s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.kfin{transform-box:fill-box;transform-origin:0 100%;animation:kfin 2.4s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.kfin2{transform-box:fill-box;transform-origin:100% 0;animation:kfin2 1.7s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.hopq{transform-box:fill-box;transform-origin:50% 100%;animation:hopq 12s infinite;animation-play-state:var(--fl-play,running)}
+.petal{animation:petal var(--t,9s) linear var(--d,0s) infinite;animation-play-state:var(--fl-play,running)}
+.fall{animation:fall .7s linear infinite;animation-play-state:var(--fl-play,running)}
+.rip{transform-box:fill-box;transform-origin:center;animation:rip 3.6s ease-out infinite;animation-play-state:var(--fl-play,running)}
+.rp2{animation-delay:-1.8s;animation-play-state:var(--fl-play,running)}
+.ox{animation:ox 6s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.oy{animation:oy 6s ease-in-out -3s infinite alternate;animation-play-state:var(--fl-play,running)}
+.twk{transform-box:fill-box;transform-origin:center;animation:twk 2.2s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.t2{animation-delay:-.7s;animation-play-state:var(--fl-play,running)}
+.flip{transform-box:fill-box;transform-origin:center;animation:flip 5s ease-in-out infinite;animation-play-state:var(--fl-play,running)}
+.lift{animation:lift 3s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.steam{animation:steam 3.6s ease-out infinite;animation-play-state:var(--fl-play,running)}
+.st2{animation-delay:-1.2s;animation-play-state:var(--fl-play,running)}
+.st3{animation-delay:-2.4s;animation-play-state:var(--fl-play,running)}
+.bachi{transform-box:fill-box;transform-origin:center;animation:bachi .8s ease-in infinite alternate;animation-play-state:var(--fl-play,running)}
+.bc2{animation-delay:-.4s;animation-play-state:var(--fl-play,running)}
+.boom{transform-box:fill-box;transform-origin:center;animation:boom .8s ease-out infinite;animation-play-state:var(--fl-play,running)}
+.beam{transform-box:fill-box;transform-origin:0 50%;animation:beam 5s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.arm1{transform-box:fill-box;transform-origin:center;animation:arm1 4s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.arm2{transform-box:fill-box;transform-origin:center;animation:arm2 4s ease-in-out -1s infinite alternate;animation-play-state:var(--fl-play,running)}
+.hb{animation:hb 1.8s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.hb2{animation-delay:-.6s;animation-play-state:var(--fl-play,running)}
+.hb3{animation-delay:-1.2s;animation-play-state:var(--fl-play,running)}
+.tele{transform-box:fill-box;transform-origin:50% 100%;animation:tele 12s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.scan{transform-box:fill-box;transform-origin:50% 100%;animation:tele 8s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.spinH{transform-box:fill-box;transform-origin:center;animation:spin 240s linear infinite;animation-play-state:var(--fl-play,running)}
+.spinM{transform-box:fill-box;transform-origin:center;animation:spin 24s linear infinite;animation-play-state:var(--fl-play,running)}
+.hop{animation:hop 1.6s ease-out infinite;animation-play-state:var(--fl-play,running)}
+.wing{transform-box:fill-box;transform-origin:center;animation:wing .45s ease-in-out infinite alternate;animation-play-state:var(--fl-play,running)}
+.fwk{transform-box:fill-box;transform-origin:center;animation:fwk 3s ease-out infinite;animation-play-state:var(--fl-play,running)}
+}
