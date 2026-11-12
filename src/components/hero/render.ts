@@ -150,15 +150,8 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
 
   add(join(g.sky, c => `<g transform="translate(0 ${c.y})"><g class="mv" style="${c.st}"><use href="#cl" transform="scale(${c.s})"></use></g></g>`), [-300, 0, 1900, 520], true);
 
-  add(`<g transform="translate(-20 125) scale(1)"><g class="isf">${join(isle.sh, stroked)}${join(isle.props, ref)}`
-    + `<path d="${isle.fall}" stroke="#bfeaf5" stroke-width="7" fill="none" stroke-dasharray="14 10" class="fall" stroke-linecap="round"></path>`
-    + `<path d="${isle.fall}" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-dasharray="6 18" class="fall" stroke-linecap="round" opacity=".9"></path>`
-    + join(isle.petals, p => `<ellipse class="petal" style="${p.st}" cx="${p.x}" cy="${p.y}" rx="2.4" ry="1.4" fill="#f39db6"></ellipse>`)
-    + `</g><g class="isf2">${join(islet.sh, stroked)}${join(islet.props, ref)}</g>`
-    + `<g class="brs"><path d="${isle.bridge}" stroke="#7a5640" stroke-width="1.4" fill="none"></path><path d="${isle.deck}" stroke="#a8743d" stroke-width="3.4" fill="none" stroke-dasharray="2.5 1.5"></path>${join(isle.blan, p => `<use href="#cho" transform="${p.m}"></use>`)}</g></g>`,
-    shift(grow(union(...isle.sh.map(s => pathBox(s.d)), ...islet.sh.map(s => pathBox(s.d)), ...isle.props.map(boxOf), ...islet.props.map(boxOf))!, 24), -20, 125), true);
-
-  add(`<g class="gnd">${join(S.ground, stroked)}</g>`, null, false);
+  // The page behind the hero is the sea colour, so the design's pale band around the sea is left out.
+  add(`<g class="gnd">${join(S.ground.filter(s => s.f !== "#d9efe9"), stroked)}</g>`, null, false);
   for (const w of S.waves) add(`<path class="${w.c}" d="${w.d}" stroke="#e9fbff" stroke-width="2" stroke-linecap="round" fill="none"></path>`, grow(pathBox(w.d), 10), true);
   for (const b of land.boats) {
     const [x, y] = b.m.match(/-?[\d.]+/g)!.map(Number);
@@ -191,6 +184,15 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
     add(wrap + c.slice(e, -4), null, false);
     for (const p of g.rim) add(live(p) ? liveRef(p) : ref(still(p)), live(p) ? grow(boxOf(p), 8) : boxOf(p), live(p));
   }
+
+  // The floating island is drawn over the whole island (the design tucks its underside behind the rail and towers).
+  add(`<g transform="translate(-20 125) scale(1)"><g class="isf">${join(isle.sh, stroked)}${join(isle.props, ref)}`
+    + `<path d="${isle.fall}" stroke="#bfeaf5" stroke-width="7" fill="none" stroke-dasharray="14 10" class="fall" stroke-linecap="round"></path>`
+    + `<path d="${isle.fall}" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-dasharray="6 18" class="fall" stroke-linecap="round" opacity=".9"></path>`
+    + join(isle.petals, p => `<ellipse class="petal" style="${p.st}" cx="${p.x}" cy="${p.y}" rx="2.4" ry="1.4" fill="#f39db6"></ellipse>`)
+    + `</g><g class="isf2">${join(islet.sh, stroked)}${join(islet.props, ref)}</g>`
+    + `<g class="brs"><path d="${isle.bridge}" stroke="#7a5640" stroke-width="1.4" fill="none"></path><path d="${isle.deck}" stroke="#a8743d" stroke-width="3.4" fill="none" stroke-dasharray="2.5 1.5"></path>${join(isle.blan, p => `<use href="#cho" transform="${p.m}"></use>`)}</g></g>`,
+    shift(grow(union(...isle.sh.map(s => pathBox(s.d)), ...islet.sh.map(s => pathBox(s.d)), ...isle.props.map(boxOf), ...islet.props.map(boxOf))!, 24), -20, 125), true);
 
   const { runs, clips } = slice(units);
 
