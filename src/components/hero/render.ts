@@ -122,8 +122,6 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
   // v05 "d" draws the centre fountain from the raster cut-outs; "a" is the all-SVG plaza used when those files are absent.
   const g = buildGeo({ pattern: "town", svcText: true, v05: withImages ? "d" : "a" });
   const S = g.S;
-  const isle = g.isle;
-  const islet = isle.islet;
   const land = buildMainland(g);
   land.items.sort((a, b) => a.key - b.key);
 
@@ -149,21 +147,6 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
   for (const it of land.items) units.push(...itemUnits({ ...it, sh: g.merge(it.sh), walk: [] }, -1, true));
 
   add(join(g.sky, c => `<g transform="translate(0 ${c.y})"><g class="mv" style="${c.st}"><use href="#cl" transform="scale(${c.s})"></use></g></g>`), [-300, 0, 1900, 520], true);
-
-  // The floating island is drawn at 3/4 size, scaled from its top centre and lifted so it clears the observatory
-  // dome, and it goes in last so nothing on the main island is drawn over it.
-  const ISLE_SCALE = 0.75, ISLE_LIFT = 60;
-  const isleShapes = union(...[...isle.sh, ...islet.sh].map(s => pathBox(s.d)).filter(Boolean))!;
-  const iox = (isleShapes[0] + isleShapes[2]) / 2, ioy = isleShapes[1];
-  const isleBox = union(...isle.sh.map(s => pathBox(s.d)), ...islet.sh.map(s => pathBox(s.d)), ...isle.props.map(boxOf), ...islet.props.map(boxOf));
-  const isleScaled: B = isleBox && [iox + (isleBox[0] - iox) * ISLE_SCALE, ioy + (isleBox[1] - ioy) * ISLE_SCALE, iox + (isleBox[2] - iox) * ISLE_SCALE, ioy + (isleBox[3] - ioy) * ISLE_SCALE];
-  const floatingIsle = () => add(`<g transform="translate(-20 ${125 - ISLE_LIFT}) translate(${iox} ${ioy}) scale(${ISLE_SCALE}) translate(${-iox} ${-ioy})"><g class="isf">${join(isle.sh, stroked)}${join(isle.props, ref)}`
-    + `<path d="${isle.fall}" stroke="#bfeaf5" stroke-width="7" fill="none" stroke-dasharray="14 10" class="fall" stroke-linecap="round"></path>`
-    + `<path d="${isle.fall}" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-dasharray="6 18" class="fall" stroke-linecap="round" opacity=".9"></path>`
-    + join(isle.petals, p => `<ellipse class="petal" style="${p.st}" cx="${p.x}" cy="${p.y}" rx="2.4" ry="1.4" fill="#f39db6"></ellipse>`)
-    + `</g><g class="isf2">${join(islet.sh, stroked)}${join(islet.props, ref)}</g>`
-    + `<g class="brs"><path d="${isle.bridge}" stroke="#7a5640" stroke-width="1.4" fill="none"></path><path d="${isle.deck}" stroke="#a8743d" stroke-width="3.4" fill="none" stroke-dasharray="2.5 1.5"></path>${join(isle.blan, p => `<use href="#cho" transform="${p.m}"></use>`)}</g></g>`,
-    shift(grow(isleScaled, 24), -20, 125 - ISLE_LIFT), true);
 
   add(`<g class="gnd">${join(S.ground, stroked)}</g>`, null, false);
   for (const w of S.waves) add(`<path class="${w.c}" d="${w.d}" stroke="#e9fbff" stroke-width="2" stroke-linecap="round" fill="none"></path>`, grow(pathBox(w.d), 10), true);
@@ -198,8 +181,6 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
     add(wrap + c.slice(e, -4), null, false);
     for (const p of g.rim) add(live(p) ? liveRef(p) : ref(still(p)), live(p) ? grow(boxOf(p), 8) : boxOf(p), live(p));
   }
-
-  floatingIsle();
 
   const { runs, clips } = slice(units);
 
