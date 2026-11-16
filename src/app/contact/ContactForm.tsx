@@ -83,7 +83,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={!agree}
-        className="w-full max-w-[360px] self-center rounded-full bg-navy py-[17px] text-base font-bold text-white disabled:cursor-not-allowed disabled:bg-disabled"
+        className="w-full max-w-[360px] self-center rounded-full bg-navy py-[17px] text-[16px] font-bold text-white disabled:cursor-not-allowed disabled:bg-disabled"
       >
         送信する
       </button>

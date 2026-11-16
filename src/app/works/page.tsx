@@ -55,8 +55,8 @@ export default async function WorksPage({ searchParams }: PageProps<"/works">) {
         <div className="flex flex-col rounded-[20px] border-2 border-line bg-white p-[clamp(18px,2.4vw,28px)]">
           {GROUPS.map((g, gi) => (
             <div key={g.key} className={`flex flex-col gap-x-4 gap-y-2.5 md:flex-row md:items-start ${gi ? "border-t border-dashed border-line-2 pt-4" : "pb-4"}`}>
-              <div className="flex w-[76px] shrink-0 flex-row items-center gap-2 md:flex-col md:items-start md:gap-1 md:pt-1">
-                <span className="rounded px-2 py-0.5 text-xs font-bold text-white" style={{ background: g.badge }}>{g.label}</span>
+              <div className="flex w-[76px] shrink-0 flex-col items-start gap-1 md:pt-1">
+                <span className="whitespace-nowrap rounded px-2 py-0.5 text-xs font-bold text-white" style={{ background: g.badge }}>{g.label}</span>
                 <span className="text-[11px] leading-snug text-label">{g.note}</span>
               </div>
               <div className="flex flex-1 flex-wrap gap-2">
@@ -92,7 +92,7 @@ export default async function WorksPage({ searchParams }: PageProps<"/works">) {
               <div className="flex flex-col gap-2 p-3 pb-3.5 md:px-5 md:pb-[22px] md:pt-[18px]">
                 <p className="font-en text-xs font-semibold text-label">{w.date}</p>
                 <p className="text-sm font-bold leading-normal md:text-[17px]">{w.title}</p>
-                <span className="self-start rounded-md border border-[#f6c9a5] bg-[#fdeadb] px-2 py-0.5 text-[11px] font-bold text-[#7a3f12]">{w.industry}</span>
+                <span className="self-start rounded-md border border-[#f6c9a5] bg-[#fdeadb] px-2.5 py-1 text-xs font-bold text-[#7a3f12] md:px-2 md:py-0.5 md:text-[11px]">{w.industry}</span>
               </div>
             </Link>
           ))}

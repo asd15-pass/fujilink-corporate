@@ -74,7 +74,7 @@ export default function ReasonPage() {
           </div>
           <div className="flex min-w-0 flex-1 flex-col">
             <div className="flex flex-wrap items-center gap-3 border-b border-line pb-4">
-              <h3 className="text-[22px] font-bold">Your Gym 福田様</h3>
+              <h3 className="text-[18px] font-bold md:text-[22px]">Your Gym 福田様</h3>
               <span className="rounded-md border border-[#f6c9a5] bg-[#fdeadb] px-2 py-0.5 text-xs font-bold text-[#7a3f12]">店舗外装工事</span>
               <span className="text-lg leading-none tracking-[.06em] text-yellow" role="img" aria-label="評価 5段階中5">★★★★★</span>
             </div>
@@ -85,7 +85,7 @@ export default function ReasonPage() {
                     <span className="grid size-[22px] shrink-0 place-items-center rounded-full bg-[#00b8ee] font-en text-xs text-white">{i + 1}</span>
                     {q}
                   </dt>
-                  <dd className="pl-8 text-[15px] leading-[1.9] text-sub">{a}</dd>
+                  <dd className="pl-8 text-sm leading-[1.9] text-sub">{a}</dd>
                 </div>
               ))}
             </dl>

@@ -63,7 +63,7 @@ export default function ServicePage() {
             {FLOW.map((f, i) => (
               <li key={f.t} className="flex flex-col gap-2 rounded-[20px] border-2 border-line bg-white px-[22px] pb-6 pt-[22px]">
                 <span className="font-en text-[13px] font-bold text-label">STEP {i + 1}</span>
-                <span className="text-base font-bold">{f.t}</span>
+                <span className="text-[16px] font-bold text-navy">{f.t}</span>
                 <span className="text-sm leading-[1.8] text-sub">{f.d}</span>
                 {f.link && (
                   <Link href={f.link.href} className="mt-1 self-start border-b-[1.5px] border-navy pb-0.5 text-[13px] font-bold text-navy">

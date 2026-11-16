@@ -45,7 +45,7 @@ export function Tag({ children }: { children: React.ReactNode }) {
 export function PageHero({ title, lead, crumbs = [] }: { en?: string; title: string; lead?: string; crumbs?: { label: string; href: string }[] }) {
   return (
     <div className="bg-cream">
-      <Container className="flex flex-col items-center gap-3.5 py-[clamp(40px,5vw,72px)] text-center">
+      <Container className={`flex flex-col items-center gap-3.5 pt-[clamp(40px,5vw,72px)] text-center ${lead ? "pb-[clamp(40px,5vw,72px)]" : "pb-[calc(clamp(40px,5vw,72px)+14px)]"}`}>
         <nav aria-label="パンくずリスト" className="flex flex-wrap justify-center gap-2 text-xs text-label">
           <Link href="/" className="font-bold text-navy">HOME</Link>
           <span>/</span>
