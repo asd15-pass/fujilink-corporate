@@ -28,7 +28,7 @@ function Baked({ layer }: { layer: Extract<HeroLayer, { kind: "img" }> }) {
   return (
     <div className="fl-layer">
       <div className="absolute" style={{ left: pct(x, ART_W), top: pct(y, ART_H), width: pct(w, ART_W), height: pct(h, ART_H) }}>
-        <Image src={layer.src} alt="" fill sizes={`(min-width: 768px) ${(f * 111.11).toFixed(1)}vw, ${(f * 200.5).toFixed(1)}vw`} quality={90} loading="eager" fetchPriority="high" />
+        <Image src={`/fujilink${layer.src}`} alt="" fill sizes={`(min-width: 768px) ${(f * 111.11).toFixed(1)}vw, ${(f * 200.5).toFixed(1)}vw`} quality={90} loading="eager" fetchPriority="high" />
       </div>
     </div>
   );

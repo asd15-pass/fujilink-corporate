@@ -11,7 +11,7 @@ const LETTERS = LETTER_COLORS.map((c, i) =>
   `<g class="xlet xl${i}" style="--i:${i}"><g>`
   + `<use href="#lpU${i}" fill="${c}" stroke="${c}" stroke-width="2.6" stroke-linejoin="round"></use>`
   + `<g mask="url(#mkRB${i})"><g style="filter:saturate(1.25) brightness(1.08)"><g filter="url(#rbF${i})">`
-  + `<g transform="translate(55 42)"><foreignObject width="1512" height="1040"><img src="/hero/letters-on7.webp" style="width:1512px;height:1040px;display:block"></foreignObject></g>`
+  + `<g transform="translate(55 42)"><foreignObject width="1512" height="1040"><img src="/fujilink/hero/letters-on7.webp" style="width:1512px;height:1040px;display:block"></foreignObject></g>`
   + `</g></g></g></g></g>`,
 ).join("");
 

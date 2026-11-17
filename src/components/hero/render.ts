@@ -172,7 +172,7 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
   });
 
   if (withImages) {
-    const c = HERO_CENTER.replace("/hero/center-cut7.webp", "/hero/center-cut7-graded.webp");
+    const c = HERO_CENTER.replace("/fujilink/hero/center-cut7.webp", "/fujilink/hero/center-cut7-graded.webp");
     const wrap = '<g transform="translate(55 42)" style="pointer-events:none">';
     const i = c.indexOf(wrap), r = c.indexOf('<g opacity=".55">', i), e = c.indexOf("</g>", r) + 4;
     add(c.slice(0, i) + "</g>", null, false);
