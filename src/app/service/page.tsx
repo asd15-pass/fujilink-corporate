@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container, PageHero, SectionHeading } from "@/components/ui";
+import { asset } from "@/lib/paths";
 import { SERVICES } from "@/lib/site";
 
 export const metadata: Metadata = { title: "事業案内" };
@@ -31,8 +33,14 @@ export default function ServicePage() {
         {SERVICES.map((s, i) => (
           <section key={s.slug} id={s.slug} className={`flex scroll-mt-24 flex-col items-center gap-[clamp(20px,4vw,48px)] rounded-[20px] border-2 bg-white p-[clamp(16px,2.4vw,28px)] ${i % 2 ? "md:flex-row-reverse" : "md:flex-row"}`} style={{ borderColor: s.color }}>
             <div className="relative w-full min-w-0 md:flex-1">
-              <div className="grid aspect-[16/10] place-items-center rounded-2xl text-[13px] text-[#8a8273]" style={{ background: s.tint }}>
-                ［{s.name}の写真：Adobe Stockより選定］
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
+                <Image
+                  src={asset(`/service/${s.slug}.webp`)}
+                  alt={s.name}
+                  fill
+                  sizes="(min-width: 768px) 520px, 100vw"
+                  className="object-cover"
+                />
               </div>
             </div>
             <div className="flex min-w-0 flex-col gap-3.5 md:flex-1">

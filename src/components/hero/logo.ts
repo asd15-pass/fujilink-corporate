@@ -2,7 +2,10 @@
 // flicker (their outline bulbs with them), a blurred colour flare behind the logo, a marquee on the bulbs while lit,
 // and a 0.4 s fade back to dark. Sparkles twinkle on their own loop. The letter shapes, masks and colour filters
 // (lpU / mkRB / rbF) come from the design's defs in static.ts.
+import { asset, withBaseInHtml } from "@/lib/paths";
 import { HERO_LETTERS_OFF } from "./static";
+
+const HERO_LETTERS_OFF_PREFIXED = withBaseInHtml(HERO_LETTERS_OFF);
 
 const f1 = (n: number) => Math.round(n * 10) / 10;
 const LETTER_COLORS = ["#ec7c92", "#f08a4b", "#f8cc03", "#48b14b", "#01a19a", "#00b8ee", "#9a72af", "#e7373e"];
@@ -11,7 +14,7 @@ const LETTERS = LETTER_COLORS.map((c, i) =>
   `<g class="xlet xl${i}" style="--i:${i}"><g>`
   + `<use href="#lpU${i}" fill="${c}" stroke="${c}" stroke-width="2.6" stroke-linejoin="round"></use>`
   + `<g mask="url(#mkRB${i})"><g style="filter:saturate(1.25) brightness(1.08)"><g filter="url(#rbF${i})">`
-  + `<g transform="translate(55 42)"><foreignObject width="1512" height="1040"><img src="/hero/letters-on7.webp" style="width:1512px;height:1040px;display:block"></foreignObject></g>`
+  + `<g transform="translate(55 42)"><foreignObject width="1512" height="1040"><img src="${asset("/hero/letters-on7.webp")}" style="width:1512px;height:1040px;display:block"></foreignObject></g>`
   + `</g></g></g></g></g>`,
 ).join("");
 
@@ -45,5 +48,5 @@ const LOGO_SEQ_CSS = LETTER_COLORS.map((_, i) => {
 
 // Dark letters, flare and lit letters. The always-blinking bulbs and sparkles go in a layer of their own above,
 // so their blinking never repaints the masked, filtered letter textures.
-export const LOGO_SIGN = `<g style="pointer-events:none">${HERO_LETTERS_OFF}<style>${LOGO_SEQ_CSS}</style>${GLOW}${LETTERS}</g>`;
+export const LOGO_SIGN = `<g style="pointer-events:none">${HERO_LETTERS_OFF_PREFIXED}<style>${LOGO_SEQ_CSS}</style>${GLOW}${LETTERS}</g>`;
 export const LOGO_LIGHTS = `<g style="pointer-events:none">${BULBS}${SPARKS}</g>`;
