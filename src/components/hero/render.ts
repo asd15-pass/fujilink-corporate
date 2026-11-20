@@ -4,6 +4,7 @@ import { HERO_ANIMATED_CLASSES, HERO_CENTER, HERO_DEFS, HERO_WHALE } from "./sta
 import { LOGO_LIGHTS, LOGO_SIGN } from "./logo";
 import { createHash } from "node:crypto";
 import { bakeDefs, frozen, gradeMarkup, pruneDefs, splitTop } from "./bake";
+import { withBaseInHtml } from "@/lib/paths";
 import { buildMainland } from "./mainland";
 import { BIRD, BIRD_DEFS } from "./bird";
 import { type B, type Unit, slice, union, pathBox, symbolBox, grow, shift, touches } from "./slice";
@@ -172,7 +173,7 @@ export function renderHeroSvg(withImages: boolean, baked: Record<string, BakedLa
   });
 
   if (withImages) {
-    const c = HERO_CENTER.replace("/hero/center-cut7.webp", "/hero/center-cut7-graded.webp");
+    const c = withBaseInHtml(HERO_CENTER.replace("/hero/center-cut7.webp", "/hero/center-cut7-graded.webp"));
     const wrap = '<g transform="translate(55 42)" style="pointer-events:none">';
     const i = c.indexOf(wrap), r = c.indexOf('<g opacity=".55">', i), e = c.indexOf("</g>", r) + 4;
     add(c.slice(0, i) + "</g>", null, false);
