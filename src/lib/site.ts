@@ -174,7 +174,6 @@ const WORK_META: Record<string, WorkMeta> = {
   },
 };
 
-// Placeholder works until the CMS is connected; mirrors the prototype's generator.
 export const WORKS: Work[] = Array.from({ length: 18 }, (_, i) => {
   const d = new Date(2026, 9, 20 - i * 4);
   const pad = (n: number) => String(n).padStart(2, "0");

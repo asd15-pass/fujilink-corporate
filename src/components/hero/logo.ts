@@ -2,6 +2,7 @@
 // flicker (their outline bulbs with them), a blurred colour flare behind the logo, a marquee on the bulbs while lit,
 // and a 0.4 s fade back to dark. Sparkles twinkle on their own loop. The letter shapes, masks and colour filters
 // (lpU / mkRB / rbF) come from the design's defs in static.ts.
+import { asset } from "@/lib/paths";
 import { HERO_LETTERS_OFF } from "./static";
 
 const f1 = (n: number) => Math.round(n * 10) / 10;
@@ -11,7 +12,7 @@ const LETTERS = LETTER_COLORS.map((c, i) =>
   `<g class="xlet xl${i}" style="--i:${i}"><g>`
   + `<use href="#lpU${i}" fill="${c}" stroke="${c}" stroke-width="2.6" stroke-linejoin="round"></use>`
   + `<g mask="url(#mkRB${i})"><g style="filter:saturate(1.25) brightness(1.08)"><g filter="url(#rbF${i})">`
-  + `<g transform="translate(55 42)"><foreignObject width="1512" height="1040"><img src="/hero/letters-on7.webp" style="width:1512px;height:1040px;display:block"></foreignObject></g>`
+  + `<g transform="translate(55 42)"><foreignObject width="1512" height="1040"><img src="${asset("/hero/letters-on7.webp")}" style="width:1512px;height:1040px;display:block"></foreignObject></g>`
   + `</g></g></g></g></g>`,
 ).join("");
 

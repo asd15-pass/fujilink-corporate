@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { asset } from "@/lib/paths";
 import { LOGO_COLORS } from "@/lib/site";
 
 export function Container({ className = "", children }: { className?: string; children: React.ReactNode }) {
@@ -72,7 +73,7 @@ export function WorkThumb({ className = "", label = "［実績写真］", photo,
       {photo ? (
         <div className="relative aspect-[3/2] transition-transform duration-200 ease-out group-hover:scale-[1.03]">
           <Image
-            src={photo}
+            src={asset(photo)}
             alt={alt ?? ""}
             fill
             sizes="(min-width: 768px) 360px, 50vw"

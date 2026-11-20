@@ -5,6 +5,7 @@ import { HeroLoader } from "@/components/HeroLoader";
 import { NavLinks, Logo } from "@/components/Header";
 import { ReasonIcon } from "@/components/ReasonIcon";
 import { Container, Dot, MoreLink, SectionHeading, WorkThumb } from "@/components/ui";
+import { asset } from "@/lib/paths";
 
 const PICKUP_SHADOW = ["#f08a4b", "#01a19a", "#9a72af"];
 import { REASONS, SERVICES, TOP_PICKUP_IDS, TOP_SERVICES, WORKS } from "@/lib/site";
@@ -43,7 +44,7 @@ export default function Home() {
               <div className="overflow-hidden">
                 <div className="relative aspect-[4/3] transition-transform duration-200 ease-out group-hover:scale-[1.03]">
                   <Image
-                    src={`/service/${s.slug}.webp`}
+                    src={asset(`/service/${s.slug}.webp`)}
                     alt={s.name}
                     fill
                     sizes="(min-width: 768px) 260px, 50vw"

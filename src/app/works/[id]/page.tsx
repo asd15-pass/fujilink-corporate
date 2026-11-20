@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container, PageHero, Placeholder, SectionHeading, WorkThumb } from "@/components/ui";
+import { asset } from "@/lib/paths";
 import { WORKS } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -39,10 +40,11 @@ export default async function WorkDetailPage({ params }: PageProps<"/works/[id]"
           {work.mainPhoto ? (
             <div className="relative aspect-[16/8] overflow-hidden rounded-[20px]">
               <Image
-                src={work.mainPhoto}
+                src={asset(work.mainPhoto)}
                 alt={work.title}
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(min-width: 1112px) 1072px, 100vw"
                 className="object-cover"
               />
@@ -55,7 +57,7 @@ export default async function WorkDetailPage({ params }: PageProps<"/works/[id]"
               {work.subPhotos.map((src, i) => (
                 <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl">
                   <Image
-                    src={src}
+                    src={asset(src)}
                     alt={`${work.title}（${i + 1}）`}
                     fill
                     sizes="(min-width: 768px) 340px, 33vw"

@@ -3,6 +3,7 @@ import path from "node:path";
 import Image from "next/image";
 import { renderHeroSvg, type BakedLayer, type HeroLayer } from "./render";
 import { HeroMotion } from "./HeroMotion";
+import { asset } from "@/lib/paths";
 import "./hero.css";
 
 const IMAGES = ["center-cut7-graded.webp", "letters-on7.webp", "letters-led-off.webp"];
@@ -28,7 +29,7 @@ function Baked({ layer }: { layer: Extract<HeroLayer, { kind: "img" }> }) {
   return (
     <div className="fl-layer">
       <div className="absolute" style={{ left: pct(x, ART_W), top: pct(y, ART_H), width: pct(w, ART_W), height: pct(h, ART_H) }}>
-        <Image src={layer.src} alt="" fill sizes={`(min-width: 768px) ${(f * 111.11).toFixed(1)}vw, ${(f * 200.5).toFixed(1)}vw`} quality={90} loading="eager" fetchPriority="high" />
+        <Image src={asset(layer.src)} alt="" fill sizes={`(min-width: 768px) ${(f * 111.11).toFixed(1)}vw, ${(f * 200.5).toFixed(1)}vw`} quality={90} loading="eager" fetchPriority="high" />
       </div>
     </div>
   );

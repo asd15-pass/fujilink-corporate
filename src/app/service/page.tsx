@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Container, PageHero, SectionHeading } from "@/components/ui";
+import { asset } from "@/lib/paths";
 import { SERVICES } from "@/lib/site";
 
 export const metadata: Metadata = { title: "事業案内" };
@@ -34,7 +35,7 @@ export default function ServicePage() {
             <div className="relative w-full min-w-0 md:flex-1">
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                 <Image
-                  src={`/service/${s.slug}.webp`}
+                  src={asset(`/service/${s.slug}.webp`)}
                   alt={s.name}
                   fill
                   sizes="(min-width: 768px) 520px, 100vw"
