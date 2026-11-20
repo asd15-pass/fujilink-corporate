@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { HeroIllustration } from "@/components/hero/HeroIllustration";
 import { HeroLoader } from "@/components/HeroLoader";
@@ -40,8 +41,14 @@ export default function Home() {
           {services.map(s => (
             <Link key={s.slug} href={`/service#${s.slug}`} className="group flex flex-col overflow-hidden rounded-[20px] border-2 bg-white text-ink" style={{ borderColor: s.color }}>
               <div className="overflow-hidden">
-                <div className="grid aspect-[4/3] place-items-center text-xs text-[#8a8273] transition-transform duration-200 ease-out group-hover:scale-[1.03]" style={{ background: s.tint }}>
-                  ［写真：Adobe Stock］
+                <div className="relative aspect-[4/3] transition-transform duration-200 ease-out group-hover:scale-[1.03]">
+                  <Image
+                    src={`/service/${s.slug}.webp`}
+                    alt={s.name}
+                    fill
+                    sizes="(min-width: 768px) 260px, 50vw"
+                    className="object-cover"
+                  />
                 </div>
               </div>
               <div className="flex flex-col gap-1.5 px-5 pb-[22px] pt-[18px]">
@@ -64,7 +71,7 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-3">
             {pickup.map((w, i) => (
               <Link key={w.id} href={`/works/${w.id}`} className="group flex flex-col overflow-hidden rounded-[20px] bg-white text-ink" style={{ boxShadow: `0 4px 0 ${PICKUP_SHADOW[i]}` }}>
-                <WorkThumb />
+                <WorkThumb photo={w.mainPhoto} alt={w.title} />
                 <div className="flex flex-col gap-2 px-5 pb-[22px] pt-[18px]">
                   <p className="text-[17px] font-black">{w.title}</p>
                   <p className="text-[13px] font-bold text-sub">{w.industry}</p>

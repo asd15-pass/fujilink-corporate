@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container, PageHero, Placeholder, SectionHeading, WorkThumb } from "@/components/ui";
@@ -21,8 +22,9 @@ export default async function WorkDetailPage({ params }: PageProps<"/works/[id]"
   const related = WORKS.filter(w => w.id !== work.id && w.tags.some(t => work.tags.includes(t))).slice(0, 3);
   const outline = [
     ["業種", work.industry],
+    ["カテゴリ", work.category],
     ["施工内容", work.tags.join("／")],
-    ["概要", "簡単な概要テキストが入ります（2〜3行程度）"],
+    ["概要", work.description],
   ];
 
   return (
@@ -34,10 +36,39 @@ export default async function WorkDetailPage({ params }: PageProps<"/works/[id]"
           <span className="rounded-full bg-navy px-3 py-1 text-xs font-bold text-white">{work.industry}</span>
         </div>
         <div className="flex flex-col gap-4">
-          <Placeholder label="［メイン写真］" className="aspect-[16/8] rounded-[20px]" />
-          <div className="grid grid-cols-3 gap-[clamp(8px,1.4vw,16px)]">
-            {["施工前", "施工後", "サブ写真"].map(l => <Placeholder key={l} label={`［${l}］`} className="aspect-[4/3] rounded-xl text-xs" />)}
-          </div>
+          {work.mainPhoto ? (
+            <div className="relative aspect-[16/8] overflow-hidden rounded-[20px]">
+              <Image
+                src={work.mainPhoto}
+                alt={work.title}
+                fill
+                priority
+                sizes="(min-width: 1112px) 1072px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <Placeholder label="［メイン写真］" className="aspect-[16/8] rounded-[20px]" />
+          )}
+          {work.subPhotos.length > 0 ? (
+            <div className="grid grid-cols-3 gap-[clamp(8px,1.4vw,16px)]">
+              {work.subPhotos.map((src, i) => (
+                <div key={src} className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                  <Image
+                    src={src}
+                    alt={`${work.title}（${i + 1}）`}
+                    fill
+                    sizes="(min-width: 768px) 340px, 33vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : !work.mainPhoto ? (
+            <div className="grid grid-cols-3 gap-[clamp(8px,1.4vw,16px)]">
+              {["施工前", "施工後", "サブ写真"].map(l => <Placeholder key={l} label={`［${l}］`} className="aspect-[4/3] rounded-xl text-xs" />)}
+            </div>
+          ) : null}
         </div>
         <section className="flex flex-col gap-5">
           <SectionHeading en="OUTLINE" small>案件概要</SectionHeading>
@@ -50,16 +81,18 @@ export default async function WorkDetailPage({ params }: PageProps<"/works/[id]"
             ))}
           </dl>
         </section>
-        <section className="flex flex-col gap-5">
-          <SectionHeading en="POINT" small>施工のポイント</SectionHeading>
-          <p className="text-[15px] leading-[1.9] text-sub">本文テキストが入ります。ご要望・工夫した点・お客様の声など。</p>
-        </section>
+        {work.point && (
+          <section className="flex flex-col gap-5">
+            <SectionHeading en="POINT" small>施工のポイント</SectionHeading>
+            <p className="whitespace-pre-line text-[15px] leading-[1.9] text-sub">{work.point}</p>
+          </section>
+        )}
         <section className="flex flex-col gap-5 border-t border-line-2 pt-10">
           <h2 className="text-[clamp(20px,2.2vw,24px)] font-bold">関連する実績</h2>
           <div className="grid gap-5 md:grid-cols-3">
             {related.map(w => (
               <Link key={w.id} href={`/works/${w.id}`} className="group flex flex-col gap-2.5 text-ink">
-                <WorkThumb className="rounded-xl" />
+                <WorkThumb className="rounded-xl" photo={w.mainPhoto} alt={w.title} />
                 <p className="text-[15px] font-bold">{w.title}</p>
                 <span className="text-xs font-bold text-sub">{w.industry}</span>
               </Link>

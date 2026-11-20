@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LOGO_COLORS } from "@/lib/site";
 
@@ -65,10 +66,22 @@ export function PageHero({ title, lead, crumbs = [] }: { en?: string; title: str
   );
 }
 
-export function WorkThumb({ className = "", label = "［実績写真］" }: { className?: string; label?: string }) {
+export function WorkThumb({ className = "", label = "［実績写真］", photo, alt }: { className?: string; label?: string; photo?: string; alt?: string }) {
   return (
     <div className={`overflow-hidden ${className}`}>
-      <Placeholder label={label} className="aspect-[3/2] transition-transform duration-200 ease-out group-hover:scale-[1.03]" />
+      {photo ? (
+        <div className="relative aspect-[3/2] transition-transform duration-200 ease-out group-hover:scale-[1.03]">
+          <Image
+            src={photo}
+            alt={alt ?? ""}
+            fill
+            sizes="(min-width: 768px) 360px, 50vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <Placeholder label={label} className="aspect-[3/2] transition-transform duration-200 ease-out group-hover:scale-[1.03]" />
+      )}
     </div>
   );
 }
